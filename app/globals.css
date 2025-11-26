@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-primary: #667eea;
+  --color-primary-dark: #764ba2;
+  --color-text-primary: #2d3748;
+  --color-text-secondary: #4a5568;
+  --color-accent: #fbbf24;
+  --color-accent-dark: #d97706;
+  --color-bg-light: #f7fafc;
+  --color-bg-dark: #edf2f7;
+}
+
+:root {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: system-ui, sans-serif;
+  --font-mono: monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Campus Theme */
+.campus-bg {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.campus-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(102, 126, 234, 0.2);
+}
+
+.campus-text {
+  color: var(--color-text-primary);
+}
+
+.campus-accent {
+  color: var(--color-accent);
+}
+
+.campus-button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.campus-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
