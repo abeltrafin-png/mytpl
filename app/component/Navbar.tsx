@@ -53,14 +53,17 @@ export default function Navbar() {
   return (
     <>
       {/* Timestamp bar above navbar */}
-      <div className="fixed top-0 left-0 right-0 bg-gray-900 text-white text-center py-1 text-sm font-mono z-50 select-none">
-        {mounted ? <CurrentTime /> : null}
+      <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center py-2 text-sm font-mono z-50 select-none shadow-lg">
+        <div className="flex items-center justify-center space-x-2">
+          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span>{mounted ? <CurrentTime /> : null}</span>
+        </div>
       </div>
 
       {/* Padding for fixed timestamp */}
-      <div className="h-6" />
+      <div className="h-8" />
 
-      <nav className="fixed top-6 left-0 right-0 backdrop-blur bg-white/95 shadow-md z-50 flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
+      <nav className="fixed top-8 left-0 right-0 backdrop-blur bg-white/98 shadow-xl border-b border-gray-100 z-50 flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
         {/* Logo on top left */}
         <div
           className="text-2xl font-bold text-gray-800 cursor-pointer relative select-none"

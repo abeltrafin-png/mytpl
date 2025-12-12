@@ -77,17 +77,25 @@ export default function HomePage() {
   ];
 
   const renderInfoCard = (item: Informasi) => (
-    <div key={item.id} className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-      <h4 className="font-bold text-gray-800">{item.judul}</h4>
-      <p className="text-sm text-gray-600 truncate">{item.isi}</p>
-      <p className="text-xs text-gray-500 mt-2">{new Date(item.tanggal).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+    <div key={item.id} className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+      <h4 className="font-bold text-gray-800 mb-2 text-lg leading-tight">{item.judul}</h4>
+      <p className="text-sm text-gray-600 mb-3 line-clamp-2">{item.isi}</p>
+      <div className="flex items-center text-xs text-gray-500">
+        <Calendar size={14} className="mr-1 text-blue-500" />
+        <span className="font-medium">{new Date(item.tanggal).toLocaleDateString('id-ID', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        })}</span>
+      </div>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen page-bg">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-20 px-6 text-center">
+      <div className="relative campus-bg text-white py-20 px-6 text-center">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative z-10">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-3 tracking-tight">

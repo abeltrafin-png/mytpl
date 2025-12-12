@@ -1,42 +1,34 @@
 import { NextResponse } from "next/server";
-import { db } from "../../../lib/db";
 
 // Tipe sesuai database Laravel
 type Informasi = {
-  id: number;
+  id?: number;
   judul: string;
   isi: string;
   foto?: string | null;
   penulis: string;
   tanggal: string | null;
-  kategori: "berita" | "pengumuman" | "agenda";
+  type: "berita" | "pengumuman" | "agenda";
 };
 
 export async function GET() {
   try {
-    const [rows] = await db.execute(`
-      SELECT id, judul, isi, foto, penulis, tanggal, kategori
-      FROM tbl_informasi
-      WHERE kategori = 'pengumuman'
-      ORDER BY tanggal DESC
-    `);
+    const response = await fetch('http://localhost:8000/api/informasi?kategori=pengumuman', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-    const data: Informasi[] = (rows as any[]).map((row) => ({
-      id: row.id,
-      judul: row.judul,
-      isi: row.isi,
-      foto: row.foto ?? null,
-      penulis: row.penulis,
-      tanggal:
-        row.tanggal instanceof Date
-          ? row.tanggal.toISOString().split("T")[0]
-          : row.tanggal ?? null,
-      kategori: row.kategori,
-    }));
+    if (!response.ok) {
+      throw new Error(`Laravel API error: ${response.status} ${response.statusText}`);
+    }
+
+    const data: Informasi[] = await response.json();
 
     return NextResponse.json(data);
   } catch (error: any) {
-    console.error("❌ Database error in /api/pengumuman:", error);
+    console.error("❌ Error fetching pengumuman data from Laravel API:", error);
     return NextResponse.json(
       { error: "Database error: " + (error.message || error) },
       { status: 500 }

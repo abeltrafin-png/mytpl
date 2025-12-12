@@ -40,7 +40,7 @@ export default async function AkademikPage() {
   const matakuliahData = await getMatakuliahData();
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen page-bg">
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center">
         <div className="absolute inset-0 bg-black opacity-20"></div>

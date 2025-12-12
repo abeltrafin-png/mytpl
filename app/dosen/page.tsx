@@ -70,7 +70,7 @@ export default function DosenPage() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="page-bg min-h-screen">
       <div className="container mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

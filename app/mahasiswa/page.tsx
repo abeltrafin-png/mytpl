@@ -1,8 +1,35 @@
+import { db } from "../../lib/db";
 import MahasiswaList from "@/app/component/MahasiswaList";
 
-export default function MahasiswaPage() {
+async function getMahasiswaData() {
+  try {
+    const query = `
+      SELECT
+        m.id,
+        m.nim,
+        m.nama,
+        m.email,
+        m.jurusan,
+        m.angkatan,
+        m.foto,
+        m.created_at,
+        m.updated_at
+      FROM tbl_mahasiswa m
+      ORDER BY m.nama;
+    `;
+    const [rows] = await db.query(query);
+    return rows as any[];
+  } catch (error) {
+    console.error("Error fetching mahasiswa data:", error);
+    return [];
+  }
+}
+
+export default async function MahasiswaPage() {
+  const mahasiswaData = await getMahasiswaData();
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen page-bg">
       <div className="container mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mb-6 shadow-lg">
@@ -16,7 +43,7 @@ export default function MahasiswaPage() {
         </div>
 
         <div className="campus-card rounded-xl p-8">
-          <MahasiswaList />
+          <MahasiswaList initialData={mahasiswaData} />
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ export async function GET() {
       foto: row.foto,
       penulis: row.penulis,
       tanggal: row.tanggal,
-      type: row.type,
+      type: row.kategori,
     }));
 
     return NextResponse.json(data);

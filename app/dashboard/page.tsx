@@ -32,7 +32,7 @@ export default async function DashboardPage() {
   const projectData = await getProjects();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen page-bg">
       <div className="container mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mb-6 shadow-lg">

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { lazy, Suspense } from "react";
 import "./globals.css";
-import Navbar from "./component/Navbar";
-import Footer from "./component/Footer";
-import { Clock } from "./component/ui/clock";
+
+const Navbar = lazy(() => import("./component/Navbar"));
+const Footer = lazy(() => import("./component/Footer"));
+const Clock = lazy(() => import("./component/ui/clock").then(mod => ({ default: mod.Clock })));
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,13 +36,19 @@ export default function RootLayout({
       >
         <BookingProvider>
           <header className="sticky top-0 z-50 shadow-md">
-            <Clock />
-            <Navbar />
+            <Suspense fallback={<div>Loading Clock...</div>}>
+              <Clock />
+            </Suspense>
+            <Suspense fallback={<div>Loading Navbar...</div>}>
+              <Navbar />
+            </Suspense>
           </header>
           <main>
             {children}
           </main>
-          <Footer />
+          <Suspense fallback={<div>Loading Footer...</div>}>
+            <Footer />
+          </Suspense>
         </BookingProvider>
       </body>
     </html>

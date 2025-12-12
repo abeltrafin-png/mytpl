@@ -37,7 +37,7 @@ export default function ProfilPage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-10">
+    <div className="min-h-screen page-bg p-4 md:p-10">
       <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
         <div className="text-center mb-8 md:mb-12">
           <h1 className="text-4xl md:text-5xl font-bold campus-text mb-4">Profil Program Studi</h1>
